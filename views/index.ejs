@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link href="/stylesheets/style.css" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap"
+      rel="stylesheet"
+    />
+    <title></title>
+  </head>
+  <body>
+    <nav class="navBar">
+      <% if (user) {%>
+      <div><%= user.username %></div>
+      <a href="/log-out">LOG OUT</a>
+      <% } else { %>
+      <form action="/log-in" method="POST">
+        <label for="username">Username</label>
+        <input
+          name="username"
+          placeholder="Username"
+          type="text"
+          class="usernameInput"
+        />
+        <label for="password">Password</label>
+        <input
+          name="password"
+          type="password"
+          class="passwordInput"
+          placeholder="Password"
+        />
+        <button class="submitLogIn">Log In</button>
+      </form>
+      <%}%>
+    </nav>
+    <!-- will be a loop containing all messages -->
+    <div class="message-container">
+      <div class="message-title">Title</div>
+      <div class="message-body">
+        BodyBodyBodyBodyBodyBodyBodyBodyBodyBodyBodyBodyBodyBodyBodyBodyBodyBodyBodyBodyBodyBodyBodyBodyBodyBody
+      </div>
+      <div class="message-timestamp">12:00 CST</div>
+      <div class="message-author">Author</div>
+    </div>
+  </body>
+</html>
