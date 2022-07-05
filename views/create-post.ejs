@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link href="/public/stylesheets/style.css" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap"
+      rel="stylesheet"
+    />
+    <title>Members Only</title>
+  </head>
+  <body>
+    <nav class="navBar">
+      <div class="loggedInWrapper">
+        <div>
+          <a href="/" class="makePost">Home</a>
+        </div>
+        <div class="loggedInUserName">
+          <% if (user) { %>
+          Welcome back, <%= user.username %>
+          <% } %>
+        </div>
+        <!-- logged in? not a member? -->
+          <button class="secret-button">
+            <img src="/public/images/question-mark.png" alt="question mark"></img>
+          </button>
+          <a href="/log-out" class="logOutButton">Log out</a>
+      </div>
+    </nav>
+    <div class="wrapper create-post-wrapper">
+      <div class="message-container create-post-container">
+        <form action="" action="POST" >
+          <div class="message-title create-message-title">
+            <label for="postTitle">Title</label>
+            <input type="text" name="postTitle" class="createPostInput" placeholder="Title" required>
+          </div>
+          <div class="message-body create-message-body">
+            <label for="postBody">Body</label>
+            <textarea name="postBody" class="createPostInput" placeholder="Write a story!" required></textarea>
+          </div>
+          <div class="meta">
+            <div class="message-author">
+              - <%= user.username %>
+            </div>
+          </div>
+          <button class="submitButton">Submit</button>
+        </form>
+      </div>
+    <div class="overlay"></div>
+    <div class="backgroundHeroCreatePost"></div>
+  </body>
+</html>

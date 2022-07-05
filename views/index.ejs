@@ -9,41 +9,70 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap"
       rel="stylesheet"
     />
-    <title></title>
+    <script src="https://kit.fontawesome.com/5deca06548.js" crossorigin="anonymous"></script>
+    <title>Members Only</title>
   </head>
   <body>
     <nav class="navBar">
       <% if (user) {%>
-      <div><%= user.username %></div>
-      <a href="/log-out">LOG OUT</a>
+      <div class="loggedInWrapper">
+        <div class="loggedInUserName">
+          Welcome back, <%= user.username %>
+        </div>
+        <div>
+          <a href="/create-post" class="makePost">Post</a>
+        </div>
+        <!-- logged in? not a member? -->
+          <button class="secret-button">
+            <img src="/public/images/question-mark.png" alt="question mark"></img>
+          </button>
+          <a href="/log-out" class="logOutButton">Log out</a>
+      </div>
       <% } else { %>
       <form action="/log-in" method="POST">
-        <label for="username">Username</label>
-        <input
-          name="username"
-          placeholder="Username"
-          type="text"
-          class="usernameInput"
-        />
-        <label for="password">Password</label>
-        <input
-          name="password"
-          type="password"
-          class="passwordInput"
-          placeholder="Password"
-        />
-        <button class="submitLogIn">Log In</button>
+        <div class="navItem">
+          <label for="username" class="label">Username</label>
+          <input
+            name="username"
+            placeholder="Username"
+            type="text"
+            class="usernameInput"
+          />
+        </div>
+        <div class="navItem">
+          <label for="password" class="label">Password</label>
+          <input
+            name="password"
+            type="password"
+            class="passwordInput"
+            placeholder="Password"
+          />
+          <button class="submitLogIn">Log In</button>
+          
+        </div>
+        <div class="navItem">
+          <button class="submitLogIn"><a href="/sign-up">Sign Up</a></button>
+        </div>
       </form>
       <%}%>
     </nav>
-    <!-- will be a loop containing all messages -->
-    <div class="message-container">
-      <div class="message-title">Title</div>
-      <div class="message-body">
-        BodyBodyBodyBodyBodyBodyBodyBodyBodyBodyBodyBodyBodyBodyBodyBodyBodyBodyBodyBodyBodyBodyBodyBodyBodyBody
+    <div class="overlay"></div>
+    <div class="wrapper">
+      <!-- will be a loop containing all messages -->
+      <div class="message-container">
+        <div class="message-title">Title</div>
+        <div class="message-body">
+          Build rich full-text search features into your applications without
+          syncing your database to a separate search engine.Build rich full-text
+          search features into your applications without syncing your database
+          to a separate search engine.Build rich full-text search features into
+          your applications without syncing your database to a separate search
+          engine.Build rich full-text search features into your applications
+          without syncing your database to a separate search engine.
+        </div>
+        <div class="message-timestamp">12:00 CST</div>
+        <div class="message-author">Author</div>
       </div>
-      <div class="message-timestamp">12:00 CST</div>
-      <div class="message-author">Author</div>
-    </div>
+    <div class="backgroundHero"></div>
   </body>
 </html>

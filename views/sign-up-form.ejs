@@ -2,16 +2,39 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title></title>
+    <link href="/stylesheets/style.css" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      defer
+      src="https://kit.fontawesome.com/5deca06548.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Members Only</title>
   </head>
   <body>
-    <h1>Sign Up</h1>
-    <form action="" method="POST">
-      <label for="username">Username</label>
-      <input name="username" placeholder="username" type="text" />
-      <label for="password">Password</label>
-      <input name="password" type="password" />
-      <button>Sign Up</button>
-    </form>
+    <div class="signUpWrapper">
+      <div class="signUpInner">
+        <form action="" method="POST">
+          <h1 class="signUpItem">Sign Up for Members Only</h1>
+          <label for="username" class="label">Username</label>
+
+          <input name="username" placeholder="Username" type="text" class="usernameInput signUpItem"/>
+
+          <label for="password" class="label" class="signUpItem">Password</label>
+
+          <input name="password" type="password" class="passwordInput signUpItem" placeholder="Password"/>
+
+          <button class="submitLogIn signUpItem">Sign Up</button>
+          <div class="legal">If this was a website with intent for monetary gain and intent to be used by the public this would be the spot with a link for the <a href="#">Terms of Service</a>, the <a href="#">Privacy Policy</a>, and the <a href="#">Cookie Usage</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
   </body>
 </html>
