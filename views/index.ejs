@@ -13,20 +13,24 @@
     <title>Members Only</title>
   </head>
   <body>
+    <div class="topper"></div>
     <nav class="navBar">
       <% if (user) {%>
       <div class="loggedInWrapper">
         <div class="loggedInUserName">
-          Welcome back, <%= user.username %>
+          Welcome, <%= user.username %>
         </div>
         <div>
-          <a href="/create-post" class="makePost">Post</a>
+          <button type="button" class="submitLogIn" id="create-post-button">
+            <a href="/create-post">Create Post</a>
+          </button>
         </div>
-        <!-- logged in? not a member? -->
           <button class="secret-button">
             <img src="/public/images/question-mark.png" alt="question mark"></img>
           </button>
-          <a href="/log-out" class="logOutButton">Log out</a>
+          <button type="button" class="submitLogIn" id="log-out-button">
+            <a href="/log-out">Log Out</a>
+          </button>
       </div>
       <% } else { %>
       <form action="/log-in" method="POST">
@@ -48,10 +52,11 @@
             placeholder="Password"
           />
           <button class="submitLogIn">Log In</button>
-          
         </div>
         <div class="navItem">
-          <button class="submitLogIn"><a href="/sign-up">Sign Up</a></button>
+          <button type="button" class="submitLogIn" id="signUpButton">
+            <a href="/sign-up">Sign Up</a>
+          </button>
         </div>
       </form>
       <%}%>
@@ -75,4 +80,16 @@
     <div class="overlay"></div>
     <div class="backgroundHero"></div>
   </body>
+  <script>
+    document.getElementById('signUpButton').onclick = function() {
+        window.open("/sign-up", "_self");
+    };
+    document.getElementById('create-post-button').onclick = function() {
+        window.open("/create-post", "_self");
+    };
+    document.getElementById('log-out-button').onclick = function() {
+        window.open("/log-out", "_self");
+    };
+    
+</script>
 </html>

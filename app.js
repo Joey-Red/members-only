@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const bcrypt = require("bcryptjs");
 const dotenv = require("dotenv");
+const reRout = require("./helperFuncs/reRout");
 dotenv.config();
 
 const mongoDb = `mongodb+srv://${process.env.MONGO_URL}`;
@@ -139,6 +140,9 @@ app.get("/log-out", (req, res) => {
     }
     res.redirect("/");
   });
+});
+app.get("/secret", (req, res) => {
+  res.render("secret", { user: req.user, reRout: reRout });
 });
 
 app.get("/", function (req, res) {

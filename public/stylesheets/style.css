@@ -10,7 +10,7 @@ body {
   box-sizing: inherit;
 }
 .navBar {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -19,7 +19,7 @@ body {
 .navBar form {
   max-height: 50px;
   min-height: 50px;
-  background-color: rgba(22, 22, 22, 0.815);
+  background-color: rgba(0, 0, 0, 0.815);
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -31,7 +31,7 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  background: url(/public/images/indexHero.jpg) no-repeat center center fixed;
+  background: url(/public/images/newWP.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -50,24 +50,52 @@ body {
   margin-right: 10px;
 }
 .wrapper {
-  /* display: flex;
-  flex-wrap: wrap; */
-  column-count: 3;
-  column-gap: 1em;
-  /* margin: 1.5em auto; */
-  /* max-width: 768px; */
-  column-gap: 1.5em;
-  /* top: 51px;
-  position: absolute;
-  left: calc(100vw / 25); */
-  /* height: 100vh; */
-  /* position: fixed; */
-  /* overflow-y: scroll; */
-  /* position: fixed;
-  top: 50px;
-  bottom: 0;
-  left: 0;
-  right: 0; */
+  display: column;
+  columns: 4;
+  margin: 0 12px 0 12px;
+}
+/* mediaQuery for wrapper layout */
+@media screen and (max-width: 1580px) {
+  .wrapper {
+    columns: 3;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .wrapper {
+    columns: 2;
+  }
+  .message-title,
+  .message-body,
+  .message-timestamp,
+  .message-data {
+    max-width: 100%;
+    min-width: 100%;
+    width: 100%;
+    overflow-wrap: break-word;
+  }
+}
+@media screen and (max-width: 808px) {
+  .wrapper {
+    columns: 1;
+  }
+}
+@media screen and (max-width: 700px) {
+  .usernameInput,
+  .passwordInput {
+    max-width: 8rem;
+  }
+}
+@media screen and (max-width: 600px) {
+  .usernameInput,
+  .passwordInput {
+    max-width: 4rem;
+  }
+}
+.topper {
+  margin-bottom: 60px;
+}
+.wrapper > * {
+  break-inside: avoid;
 }
 .overlay {
   z-index: -1;
@@ -92,9 +120,11 @@ body {
 .loggedInUserName,
 .makePost,
 .logOutButton,
+.submitLogIn,
 .navBar a {
   font-weight: 700;
 }
+
 .postButton {
   background: none;
   border-radius: 4px;
@@ -104,23 +134,27 @@ body {
 }
 .navBar a {
   text-decoration: none;
-  color: rgba(255, 40, 72, 0.911);
 }
 .usernameInput,
 .passwordInput,
-.submitLogIn {
+.submitLogIn,
+.makePost,
+.logOutButton {
   background-color: rgba(36, 33, 33, 0.767);
   border-radius: 15px;
-  border: none;
+  border: solid rgba(255, 40, 72, 0.911) 1px;
   padding: 6px;
   color: white;
 }
-.submitLogIn {
+.submitLogIn,
+.logOutButton,
+.makePost {
   background-color: rgba(255, 40, 72, 0.911);
   border: solid rgba(36, 33, 33, 0.767) 1px;
   margin-left: 10px;
   color: black;
 }
+
 .secret-button img {
   width: 30px;
   border-radius: 50%;
@@ -136,20 +170,17 @@ button a:visited {
   border-radius: 50%;
 }
 .message-container {
-  /* display: inline-block; */
-  display: block;
-  /* display: flex; */
   width: 100%;
-
+  z-index: 9997;
   border-radius: 12px;
   border: solid rgba(36, 33, 33, 0.767) 2px;
   max-width: 344px;
-  margin: 60px auto 0 auto;
+  margin: 10px auto 20px auto;
   padding: 20px;
-  max-height: fit-content;
-  height: fit-content;
-  min-height: fit-content;
+  min-height: max-content;
   min-width: 344px;
+  max-height: max-content;
+  height: max-content;
   background-color: rgba(0, 0, 0, 0.9);
 }
 .message-title,
@@ -160,6 +191,7 @@ button a:visited {
   max-width: 30vw;
   word-break: break-word;
   color: rgb(255, 255, 255);
+  z-index: 9998;
 }
 .message-title,
 .message-data {
