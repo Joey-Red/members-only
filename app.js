@@ -28,6 +28,7 @@ const Post = mongoose.model(
     title: { type: String, required: true },
     body: { type: String, required: true },
     user: { type: String, required: true },
+    added: { type: String, required: true },
   })
 );
 const User = mongoose.model(
@@ -35,6 +36,7 @@ const User = mongoose.model(
   new Schema({
     username: { type: String, required: true },
     password: { type: String, required: true },
+    isMember: { type: Boolean, required: true },
   })
 );
 
@@ -82,29 +84,17 @@ app.use("/public/stylesheets", express.static("./public/stylesheets"));
 app.use("/public/images/", express.static("./public/images"));
 
 app.use(function (req, res, next) {
+  // console.log(req);
   res.locals.currentUser = req.user;
   next();
 });
-
-// app.post("/create-post:id", (req, res, next) => {
-//   console.log("are we firing?");
-//   const post = new Post({
-//     postTitle: req.body.postTitle,
-//     postBody: req.body.postBody,
-//     username: username,
-//   }).save((err) => {
-//     if (err) {
-//       return next(err);
-//     }
-//     res.redirect("/");
-//   });
-// });
 
 app.post("/create-post", (req, res, next) => {
   const post = new Post({
     title: req.body.postTitle,
     body: req.body.postBody,
-    user: req.user,
+    user: req.user.username,
+    added: new Date(),
   }).save((err) => {
     if (err) {
       return next(err);
@@ -121,6 +111,7 @@ app.post("/sign-up", (req, res, next) => {
     const user = new User({
       username: req.body.username,
       password: hashedPassword,
+      isMember: false,
     }).save((err) => {
       if (err) {
         return next(err);
@@ -149,8 +140,18 @@ app.get("/log-out", (req, res) => {
     res.redirect("/");
   });
 });
-app.get("/", (req, res) => {
-  res.render("index", { user: req.user });
+
+app.get("/", function (req, res) {
+  Post.find((err, posts) => {
+    if (!err) {
+      res.render("index", {
+        user: req.user,
+        data: posts,
+      });
+    } else {
+      console.log("Failed to retrieve data " + err);
+    }
+  });
 });
 app.listen(8080, () => console.log("app listening on port 8080!"));
 module.exports = app;

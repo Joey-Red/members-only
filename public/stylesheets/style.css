@@ -5,11 +5,16 @@ body {
   font-family: "Roboto", sans-serif;
   box-sizing: border-box;
 }
+*:before,
+*:after {
+  box-sizing: inherit;
+}
 .navBar {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
+  z-index: 99999;
 }
 .navBar form {
   max-height: 50px;
@@ -37,6 +42,7 @@ body {
   display: flex;
   max-height: 50px;
   min-height: 50px;
+  z-index: 99999;
 }
 
 .label {
@@ -44,8 +50,24 @@ body {
   margin-right: 10px;
 }
 .wrapper {
-  display: flex;
-  flex-wrap: wrap;
+  /* display: flex;
+  flex-wrap: wrap; */
+  column-count: 3;
+  column-gap: 1em;
+  /* margin: 1.5em auto; */
+  /* max-width: 768px; */
+  column-gap: 1.5em;
+  /* top: 51px;
+  position: absolute;
+  left: calc(100vw / 25); */
+  /* height: 100vh; */
+  /* position: fixed; */
+  /* overflow-y: scroll; */
+  /* position: fixed;
+  top: 50px;
+  bottom: 0;
+  left: 0;
+  right: 0; */
 }
 .overlay {
   z-index: -1;
@@ -114,9 +136,14 @@ button a:visited {
   border-radius: 50%;
 }
 .message-container {
+  /* display: inline-block; */
+  display: block;
+  /* display: flex; */
+  width: 100%;
+
   border-radius: 12px;
   border: solid rgba(36, 33, 33, 0.767) 2px;
-  max-width: 300px;
+  max-width: 344px;
   margin: 60px auto 0 auto;
   padding: 20px;
   max-height: fit-content;
@@ -128,14 +155,14 @@ button a:visited {
 .message-title,
 .message-body,
 .message-timestamp,
-.message-author {
+.message-data {
   font-size: 1.2rem;
   max-width: 30vw;
   word-break: break-word;
   color: rgb(255, 255, 255);
 }
 .message-title,
-.message-author {
+.message-data {
   color: rgba(255, 40, 72, 1);
 }
 

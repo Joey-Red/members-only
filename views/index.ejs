@@ -56,23 +56,23 @@
       </form>
       <%}%>
     </nav>
-    <div class="overlay"></div>
     <div class="wrapper">
       <!-- will be a loop containing all messages -->
+      <% for(var i = 0; i < data.length; i++) {%>
       <div class="message-container">
-        <div class="message-title">Title</div>
+        <div class="message-title"><%= data[i].title %></div>
         <div class="message-body">
-          Build rich full-text search features into your applications without
-          syncing your database to a separate search engine.Build rich full-text
-          search features into your applications without syncing your database
-          to a separate search engine.Build rich full-text search features into
-          your applications without syncing your database to a separate search
-          engine.Build rich full-text search features into your applications
-          without syncing your database to a separate search engine.
+          <%= data[i].body %>
         </div>
-        <div class="message-timestamp">12:00 CST</div>
-        <div class="message-author">Author</div>
+        <div class="message-timestamp"><%= data[i].added %></div>
+        <div class="message-data">
+          <% if (user && user.isMember === true) {%>
+          <%= data[i].user %>
+          <%}%>
+        </div>
       </div>
+      <% } %>
+    <div class="overlay"></div>
     <div class="backgroundHero"></div>
   </body>
 </html>
