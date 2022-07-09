@@ -7,7 +7,6 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const bcrypt = require("bcryptjs");
 const dotenv = require("dotenv");
-const reRout = require("./helperFuncs/reRout");
 dotenv.config();
 
 const mongoDb = `mongodb+srv://${process.env.MONGO_URL}`;
@@ -131,7 +130,11 @@ app.post(
 
 app.get("/sign-up", (req, res) => res.render("sign-up-form"));
 app.get("/create-post", (req, res) => {
-  res.render("create-post-form", { user: req.user });
+  if (req.user) {
+    res.render("create-post-form", { user: req.user });
+  } else {
+    res.redirect("/");
+  }
 });
 app.get("/log-out", (req, res) => {
   req.logout(function (err) {
@@ -142,7 +145,11 @@ app.get("/log-out", (req, res) => {
   });
 });
 app.get("/secret", (req, res) => {
-  res.render("secret", { user: req.user, reRout: reRout });
+  if (req.user) {
+    res.render("secret", { user: req.user });
+  } else {
+    res.redirect("/");
+  }
 });
 
 app.get("/", function (req, res) {

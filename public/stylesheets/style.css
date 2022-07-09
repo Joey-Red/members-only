@@ -335,3 +335,37 @@ button a:visited {
   -o-background-size: cover;
   background-size: cover;
 }
+.backgroundHeroEnterSecret {
+  z-index: -2;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: url(/public/images/secretHero.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+/* Secret Page Styles */
+.secret-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+}
+.secret-box {
+  color: red;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  height: 250px;
+  justify-content: space-evenly;
+}
+.secret-box input {
+  padding: 10px;
+}
