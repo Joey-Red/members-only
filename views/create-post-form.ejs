@@ -26,9 +26,9 @@
           <% } %>
         </div>
         <!-- logged in? not a member? -->
-          <button class="secret-button">
-            <img src="/public/images/question-mark.png" alt="question mark"></img>
-          </button>
+          <a href="/secret" class="secret-link">
+            <img src="/public/images/question-mark.png" alt="question mark" class="secret-button"></img>
+          </a>
           <button type="button" class="submitLogIn" id="log-out-button">
             <a href="/log-out">Log Out</a>
           </button>
@@ -38,11 +38,11 @@
       <div class="message-container create-post-container">
         <form action="" method="POST">
           <div class="message-title create-message-title">
-            <label for="postTitle">Title</label>
-            <input type="text" name="postTitle" class="createPostInput" placeholder="Title" required />
+            <label for="postTitle" class="create-post-title">Title</label>
+            <input type="text" name="postTitle" class="createPostInput" placeholder="So this one time..." required />
           </div>
           <div class="message-body create-message-body">
-            <label for="postBody">Body</label>
+            <label for="postBody" class="create-post-body">Body</label>
             <textarea name="postBody" class="createPostInput" placeholder="Write a story!" required></textarea>
           </div>
           <div class="meta">

@@ -25,9 +25,9 @@
             <a href="/create-post">Create Post</a>
           </button>
         </div>
-          <button class="secret-button">
-            <img src="/public/images/question-mark.png" alt="question mark"></img>
-          </button>
+            <a href="/secret" class="secret-link">
+            <img src="/public/images/question-mark.png" alt="question mark" class="secret-button"></img>
+          </a>
           <button type="button" class="submitLogIn" id="log-out-button">
             <a href="/log-out">Log Out</a>
           </button>
@@ -90,6 +90,8 @@
     document.getElementById('log-out-button').onclick = function() {
         window.open("/log-out", "_self");
     };
-    
+    document.getElementById('secret-button').onclick = function() {
+        window.open("/secret", "_self");
+    };
 </script>
 </html>

@@ -102,6 +102,40 @@ app.post("/create-post", (req, res, next) => {
     res.redirect("/");
   });
 });
+// app.post("/secret", (req, res, next) => {
+//   // console.log(mongoDb.secrets.find());
+//   // mongoDb;
+//   console.log(
+//     mongoDb.secrets.find((err, secrets) => {
+//       console.log("inside", secrets);
+//     })
+//   );
+// });
+// });
+// app.post("/secret", (req, res, next) => {
+//   const post = new Post({
+//     secret: secret,
+//   }).save((err) => {
+//     if (err) {
+//       return next(err);
+//     }
+//     res.redirect("/");
+//   });
+// });
+// Compare input to stored secret word
+// if match update isMember
+// app.get("/", function (req, res) {
+//   Post.find((err, posts) => {
+//     if (!err) {
+//       res.render("index", {
+//         user: req.user,
+//         data: posts,
+//       });
+//     } else {
+//       console.log("Failed to retrieve data " + err);
+//     }
+//   });
+// });
 
 app.post("/sign-up", (req, res, next) => {
   bcrypt.hash(req.body.password, 10, (err, hashedPassword) => {

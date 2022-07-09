@@ -155,10 +155,6 @@ body {
   color: black;
 }
 
-.secret-button img {
-  width: 30px;
-  border-radius: 50%;
-}
 button a,
 button a:visited {
   text-decoration: none;
@@ -166,8 +162,12 @@ button a:visited {
 }
 .secret-button {
   background: none;
-  border: none;
+  border: solid rgba(36, 33, 33, 0.767) 1px;
   border-radius: 50%;
+  width: 26px;
+}
+.secret-link {
+  display: flex;
 }
 .message-container {
   width: 100%;
@@ -262,12 +262,15 @@ button a:visited {
   position: absolute;
   top: calc(50vh / 2);
   display: flex;
-  width: 30vw;
-  min-width: 30vw;
+  width: 60vw;
+  min-width: 60vw;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.4);
+  justify-content: center;
 }
+
 .create-message-title {
+  flex-direction: column;
   display: flex;
   margin: 0 auto;
   align-content: center;
@@ -280,14 +283,34 @@ button a:visited {
   border: none;
   border-radius: 6px;
   color: white;
+  width: 40vw;
+  min-width: 336px;
+  max-width: 600px;
+}
+.create-post-title,
+.message-author,
+.create-post-body {
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+.createPostInput::placeholder,
+#secretInput::placeholder {
+  padding: 8px;
+  color: white;
+  font-size: 0.8rem;
 }
 .create-message-title input {
-  width: 300px;
   height: 1.1rem;
-  margin-left: 8px;
+}
+.create-post-title {
+  color: white;
+}
+.message-author {
+  color: rgba(255, 40, 72, 1);
 }
 .create-message-body {
   display: flex;
+  flex-direction: column;
   margin: 40px auto 0px auto;
   align-content: center;
   justify-self: center;
@@ -295,12 +318,8 @@ button a:visited {
   justify-content: space-evenly;
 }
 .create-message-body textarea {
-  margin-left: 8px;
-  width: 300px;
   height: 150px;
-  max-width: 300px;
   max-height: 150px;
-  min-width: 300px;
   min-height: 150px;
 }
 .meta {
@@ -355,6 +374,39 @@ button a:visited {
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
+  width: 60vw;
+  min-width: 60vw;
+}
+.secret-form-container {
+  width: 100%;
+  z-index: 9997;
+  border-radius: 12px;
+  border: solid rgba(36, 33, 33, 0.767) 2px;
+  margin: 10px auto 20px auto;
+  padding: 20px;
+  min-height: max-content;
+  max-height: max-content;
+  height: max-content;
+  background-color: rgba(0, 0, 0, 0.9);
+  width: 40vw;
+  min-width: 336px;
+  max-width: 600px;
+}
+#secretInput {
+  background-color: rgba(36, 33, 33, 0.767);
+  border: none;
+  border-radius: 6px;
+  color: white;
+  width: 30vw;
+  min-width: 336px;
+  max-width: 600px;
+}
+@media screen and (max-width: 969px) {
+  #secretInput {
+    width: 20vw;
+    min-width: 300px;
+    max-width: 600px;
+  }
 }
 .secret-box {
   color: red;
