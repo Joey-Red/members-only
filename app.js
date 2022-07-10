@@ -102,40 +102,39 @@ app.post("/create-post", (req, res, next) => {
     res.redirect("/");
   });
 });
-// app.post("/secret", (req, res, next) => {
-//   // console.log(mongoDb.secrets.find());
-//   // mongoDb;
-//   console.log(
-//     mongoDb.secrets.find((err, secrets) => {
-//       console.log("inside", secrets);
-//     })
-//   );
-// });
-// });
-// app.post("/secret", (req, res, next) => {
-//   const post = new Post({
-//     secret: secret,
-//   }).save((err) => {
-//     if (err) {
-//       return next(err);
-//     }
+
+// app.post("/secret", (req, res) => {
+//   if (req.body.secret === `${process.env.SECRET_WORD}`) {
+//     User.findOneAndUpdate(
+//       { user: req.user },
+//       { $set: { isMember: true } },
+//       (err) => {
+//         if (err) {
+//           console.log(err);
+//         }
+//       }
+//     );
+
+//     console.log("Success!");
 //     res.redirect("/");
-//   });
+//   } else {
+//     console.log("Failure");
+//     res.redirect("/");
+//   }
 // });
-// Compare input to stored secret word
-// if match update isMember
-// app.get("/", function (req, res) {
-//   Post.find((err, posts) => {
-//     if (!err) {
-//       res.render("index", {
-//         user: req.user,
-//         data: posts,
-//       });
-//     } else {
-//       console.log("Failed to retrieve data " + err);
-//     }
-//   });
-// });
+
+app.post("/secret", async (req, res) => {
+  if (req.body.secret === `${process.env.SECRET_WORD}`) {
+    const doc = await User.findOne(req.user);
+    doc.isMember = true;
+    await doc.save();
+    console.log("Success!");
+    res.redirect("/");
+  } else {
+    console.log("Failure");
+    res.redirect("/");
+  }
+});
 
 app.post("/sign-up", (req, res, next) => {
   bcrypt.hash(req.body.password, 10, (err, hashedPassword) => {
@@ -188,6 +187,8 @@ app.get("/secret", (req, res) => {
 
 app.get("/", function (req, res) {
   Post.find((err, posts) => {
+    // console.log(req.user);
+
     if (!err) {
       res.render("index", {
         user: req.user,

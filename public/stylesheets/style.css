@@ -401,6 +401,12 @@ button a:visited {
   min-width: 336px;
   max-width: 600px;
 }
+#secret-link-button {
+  background: none;
+  border: none;
+
+  justify-content: center;
+}
 @media screen and (max-width: 969px) {
   #secretInput {
     width: 20vw;
@@ -420,4 +426,13 @@ button a:visited {
 }
 .secret-box input {
   padding: 10px;
+}
+.show {
+  display: flex;
+  position: absolute;
+  top: 100px;
+  left: 100px;
+}
+.help-modal {
+  display: none;
 }
