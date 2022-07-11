@@ -165,23 +165,36 @@ button a:visited {
   border: solid rgba(36, 33, 33, 0.767) 1px;
   border-radius: 50%;
   width: 26px;
+  margin-bottom: 10px;
 }
 .secret-link {
   display: flex;
 }
 .message-container {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   z-index: 9997;
   border-radius: 12px;
   border: solid rgba(36, 33, 33, 0.767) 2px;
   max-width: 344px;
-  margin: 10px auto 20px auto;
+  margin: 0px auto 20px auto;
   padding: 20px;
   min-height: max-content;
   min-width: 344px;
   max-height: max-content;
   height: max-content;
   background-color: rgba(0, 0, 0, 0.9);
+}
+.deleteMessage {
+  display: flex;
+  justify-content: flex-end;
+  background-color: red;
+  color: white;
+  border-radius: 12px;
+  border: none;
+  max-width: fit-content;
+  align-self: flex-end;
 }
 .message-title,
 .message-body,
@@ -192,6 +205,9 @@ button a:visited {
   word-break: break-word;
   color: rgb(255, 255, 255);
   z-index: 9998;
+}
+.message-timestamp {
+  color: grey;
 }
 .message-title,
 .message-data {
@@ -238,6 +254,10 @@ button a:visited {
 .signUpItem {
   color: rgb(211, 211, 211);
   margin-bottom: 40px;
+}
+.isAdmin {
+  color: white;
+  margin-bottom: 10px;
 }
 .legal {
   color: rgb(211, 211, 211);
@@ -427,11 +447,13 @@ button a:visited {
 .secret-box input {
   padding: 10px;
 }
+.secret-title {
+  text-align: center;
+}
 .show {
   display: flex;
-  position: absolute;
-  top: 100px;
-  left: 100px;
+  z-index: 9999;
+  color: white;
 }
 .help-modal {
   display: none;

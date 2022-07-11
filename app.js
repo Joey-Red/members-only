@@ -37,6 +37,7 @@ const User = mongoose.model(
     username: { type: String, required: true },
     password: { type: String, required: true },
     isMember: { type: Boolean, required: true },
+    isAdmin: { type: Boolean, required: false },
   })
 );
 
@@ -47,7 +48,7 @@ passport.use(
         return done(err);
       }
       if (!user) {
-        return done(null, false, { message: "Incorrect username" });
+        return done(null, false, { message: "Err" });
       }
       bcrypt.compare(password, user.password, (err, res) => {
         if (res) {
@@ -84,7 +85,6 @@ app.use("/public/stylesheets", express.static("./public/stylesheets"));
 app.use("/public/images/", express.static("./public/images"));
 
 app.use(function (req, res, next) {
-  // console.log(req);
   res.locals.currentUser = req.user;
   next();
 });
@@ -103,32 +103,11 @@ app.post("/create-post", (req, res, next) => {
   });
 });
 
-// app.post("/secret", (req, res) => {
-//   if (req.body.secret === `${process.env.SECRET_WORD}`) {
-//     User.findOneAndUpdate(
-//       { user: req.user },
-//       { $set: { isMember: true } },
-//       (err) => {
-//         if (err) {
-//           console.log(err);
-//         }
-//       }
-//     );
-
-//     console.log("Success!");
-//     res.redirect("/");
-//   } else {
-//     console.log("Failure");
-//     res.redirect("/");
-//   }
-// });
-
 app.post("/secret", async (req, res) => {
   if (req.body.secret === `${process.env.SECRET_WORD}`) {
     const doc = await User.findOne(req.user);
     doc.isMember = true;
     await doc.save();
-    console.log("Success!");
     res.redirect("/");
   } else {
     console.log("Failure");
@@ -145,6 +124,7 @@ app.post("/sign-up", (req, res, next) => {
       username: req.body.username,
       password: hashedPassword,
       isMember: false,
+      isAdmin: req.body.isAdmin,
     }).save((err) => {
       if (err) {
         return next(err);
@@ -161,6 +141,12 @@ app.post(
   })
 );
 
+app.post("/", (req, res) => {
+  Post.findByIdAndRemove(req.body.deleteMessage, function deleteMessage(err) {
+    if (err) return next(err);
+    res.redirect("/");
+  });
+});
 app.get("/sign-up", (req, res) => res.render("sign-up-form"));
 app.get("/create-post", (req, res) => {
   if (req.user) {

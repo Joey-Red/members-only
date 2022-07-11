@@ -25,10 +25,11 @@
           Welcome back, <%= user.username %>
           <% } %>
         </div>
-        <!-- logged in? not a member? -->
-          <a href="/secret" class="secret-link">
+          <% if (user && user.isMember !== true) {%>
+              <a href="/secret" class="secret-link">
             <img src="/public/images/question-mark.png" alt="question mark" class="secret-button"></img>
-          </a>
+            </a>
+            <%}%>
           <button type="button" class="submitLogIn" id="log-out-button">
             <a href="/log-out">Log Out</a>
           </button>

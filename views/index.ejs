@@ -25,9 +25,12 @@
             <a href="/create-post">Create Post</a>
           </button>
         </div>
-            <a href="/secret" class="secret-link">
+            <% if (user && user.isMember !== true) {%>
+              <a href="/secret" class="secret-link">
             <img src="/public/images/question-mark.png" alt="question mark" class="secret-button"></img>
-          </a>
+            </a>
+            <%}%>
+            
           <button type="button" class="submitLogIn" id="log-out-button">
             <a href="/log-out">Log Out</a>
           </button>
@@ -62,14 +65,27 @@
       <%}%>
     </nav>
     <div class="wrapper">
-      <!-- will be a loop containing all messages -->
       <% for(var i = 0; i < data.length; i++) {%>
       <div class="message-container">
+        <% if (user && user.isAdmin === true) {%>
+          <form action="" method="POST" class="deleteMessage" id="deleteMessage">
+            <input type="hidden" value="<%=data[i]._id %>" name='deleteMessage' id='deleteMessage' />
+            <button class="deleteMessage"
+              id="deleteMessage"
+              >
+              Delete
+            </button>
+          </form>
+          <%}%>
         <div class="message-title"><%= data[i].title %></div>
         <div class="message-body">
           <%= data[i].body %>
         </div>
-        <div class="message-timestamp"><%= data[i].added %></div>
+        <div class="message-timestamp">
+          <% if (user && user.isMember === true) {%>
+            <%= data[i].added.split(" ", 3) %>
+          <%}%>
+        </div>
         <div class="message-data">
           <% if (user && user.isMember === true) {%>
           <%= data[i].user %>
@@ -93,5 +109,12 @@
     document.getElementById('secret-button').onclick = function() {
         window.open("/secret", "_self");
     };
+    // function deleteMessageFunc(){  
+    // event.preventDefault();
+    // const formData = new FormData();
+    // formData.append("username", "Groucho");
+    // formData.append("accountnum", 123456); 
+    // console.log(formData)
+    // }
 </script>
 </html>
