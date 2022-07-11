@@ -87,6 +87,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + "/public"));
 app.use("/public/stylesheets", express.static("./public/stylesheets"));
 app.use("/public/images/", express.static("./public/images"));
+app.use("/helperFunc/", express.static("./helperFunc"));
 
 app.use(function (req, res, next) {
   res.locals.currentUser = req.user;
