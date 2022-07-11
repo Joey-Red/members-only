@@ -6,10 +6,11 @@ const LocalStrategy = require("passport-local").Strategy;
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const bcrypt = require("bcryptjs");
-const dotenv = require("dotenv");
+// const dotenv = require("dotenv");
+require("dotenv").config({ path: path.resolve(__dirname, "./.env") });
 var helmet = require("helmet");
 var compression = require("compression");
-dotenv.config();
+// dotenv.config();
 
 const mongoDb = process.env.MONGODB_URI;
 mongoose.connect(
