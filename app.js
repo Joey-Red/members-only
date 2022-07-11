@@ -7,6 +7,8 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const bcrypt = require("bcryptjs");
 const dotenv = require("dotenv");
+var helmet = require("helmet");
+var compression = require("compression");
 dotenv.config();
 
 const mongoDb = `mongodb+srv://${process.env.MONGO_URL}`;
@@ -72,13 +74,15 @@ passport.deserializeUser(function (id, done) {
     done(err, user);
   });
 });
-const app = express();
 
+const app = express();
+app.use(helmet());
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(session({ secret: "dogs", resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(compression());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + "/public"));
 app.use("/public/stylesheets", express.static("./public/stylesheets"));
