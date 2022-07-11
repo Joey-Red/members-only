@@ -10,6 +10,9 @@
     "EJS",
     "mongoose"
   ],
+  "engines": {
+    "node": "16.14.2"
+  },
   "scripts": {
     "start": "node ./bin/www",
     "devstart": "nodemon ./bin/www",
