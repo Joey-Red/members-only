@@ -11,7 +11,7 @@ var helmet = require("helmet");
 var compression = require("compression");
 dotenv.config();
 
-const mongoDb = `mongodb+srv://${process.env.MONGODB_URI}`;
+const mongoDb = process.env.MONGODB_URI;
 mongoose.connect(
   mongoDb,
   { useUnifiedTopology: true, useNewUrlParser: true },
