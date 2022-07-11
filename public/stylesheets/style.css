@@ -168,7 +168,6 @@ button a:visited {
   border: solid rgba(36, 33, 33, 0.767) 1px;
   border-radius: 50%;
   width: 26px;
-  margin-bottom: 10px;
 }
 .secret-link {
   display: flex;
@@ -192,8 +191,8 @@ button a:visited {
 .deleteMessage {
   display: flex;
   justify-content: flex-end;
-  background-color: red;
-  color: white;
+  background-color: rgba(255, 40, 72, 0.911);
+  color: black;
   border-radius: 12px;
   border: none;
   max-width: fit-content;
