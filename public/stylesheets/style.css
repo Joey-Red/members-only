@@ -161,6 +161,9 @@ button a:visited {
   color: black;
 }
 .secret-button {
+  display: flex;
+  justify-self: center;
+  align-self: center;
   background: none;
   border: solid rgba(36, 33, 33, 0.767) 1px;
   border-radius: 50%;
