@@ -1,4 +1,0 @@
-<!-- <% if (user) {%> -->
-      <!-- Above needs to be user===member -->
-      <div class="message-author">Author</div>
-      <!-- <% } %> -->
